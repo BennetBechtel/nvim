@@ -24,8 +24,19 @@ return {
 		})
 
 		local sources = {
-			diagnostics.checkmake,
-			formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
+			diagnostics.eslint_d,
+			formatting.prettier.with({
+				filetypes = {
+					"html",
+					"json",
+					"yaml",
+					"markdown",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+				},
+			}),
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "4" } }),
 			formatting.terraform_fmt,
@@ -49,6 +60,14 @@ return {
 						end,
 					})
 				end
+			end,
+		})
+
+		-- format on save
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*",                    -- Apply to all file types
+			callback = function()
+				vim.lsp.buf.format({ async = false }) -- Format synchronously before saving
 			end,
 		})
 	end,
