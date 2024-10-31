@@ -24,8 +24,9 @@ return {
 		})
 
 		local sources = {
-			diagnostics.eslint_d,
+			-- Prettier setup with Tailwind CSS plugin support
 			formatting.prettier.with({
+				extra_args = { "--plugin", "prettier-plugin-tailwindcss" }, -- Load Tailwind CSS plugin
 				filetypes = {
 					"html",
 					"json",
@@ -65,7 +66,7 @@ return {
 
 		-- format on save
 		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*",                    -- Apply to all file types
+			pattern = "*", -- Apply to all file types
 			callback = function()
 				vim.lsp.buf.format({ async = false }) -- Format synchronously before saving
 			end,
