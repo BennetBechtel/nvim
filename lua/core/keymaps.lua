@@ -15,11 +15,11 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- clear highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", opts)
 
--- save file
+-- save file (keeping this as it's a different key than which-key's <leader>ww)
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
 vim.keymap.set("i", "<C-s>", "<cmd> w <CR>", opts)
 
--- save file without auto-formatting
+-- save file without auto-formatting (unique)
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
 
 -- quit file
@@ -43,38 +43,30 @@ vim.keymap.set("n", "<Down>", ":resize +1<CR>", opts)
 vim.keymap.set("n", "<Left>", ":vertical resize -1<CR>", opts)
 vim.keymap.set("n", "<Right>", ":vertical resize +1<CR>", opts)
 
--- Buffers
+-- Buffer navigation (different than which-key buffer commands)
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts) -- close buffer
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Increment/decrement numbers
-vim.keymap.set("n", "<leader>+", "<C-a>", opts) -- increment
-vim.keymap.set("n", "<leader>-", "<C-x>", opts) -- decrement
+vim.keymap.set("n", "<leader>+", "<C-a>", opts)
+vim.keymap.set("n", "<leader>-", "<C-x>", opts)
 
--- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
+-- Make split windows equal width & height (unique)
+vim.keymap.set("n", "<leader>se", "<C-w>=", opts)
 
--- Navigate between splits
+-- Alternative window navigation with Ctrl (different than which-key's leader commands)
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
 vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", opts)
 vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
--- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
+-- Tab management (unique)
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts)
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts)
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts)
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)
 
--- Toggle line wrapping
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
-
--- Press jk fast to exit insert mode
+-- Insert mode exit shortcuts
 vim.keymap.set("i", "jk", "<ESC>", opts)
 vim.keymap.set("i", "kj", "<ESC>", opts)
 
@@ -85,12 +77,9 @@ vim.keymap.set("v", ">", ">gv", opts)
 -- Keep last yanked when pasting
 vim.keymap.set("v", "p", '"_dP', opts)
 
--- Explicitly yank to system clipboard (highlighted and entire row)
+-- System clipboard operations (unique)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+-- Diagnostics list (unique)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
